@@ -7,7 +7,6 @@ let textData = {
     placementX: 800, // 0,0 is top left corner, 
     placementY: 850 //w.r.t. that text is placed on image
   };
-//const id="fu"//fetch()
 
 const textOverlay = async (id)=> {
    const image = await Jimp.read('public/static/images/tn1.png');
@@ -19,10 +18,9 @@ const textOverlay = async (id)=> {
     alignmentY: Jimp.VERTICAL_ALIGN_TOP
   }, textData.maxWidth, textData.maxHeight);
   
-   await image.writeAsync(`public/exports/tfu.png`);
+   await image.writeAsync(`public/exports/${new Date()/10000}.png`);
    console.log("Image is processed succesfully");
 }
-// textOverlay("fuck u")
 module.exports=textOverlay;
 
 

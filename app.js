@@ -1,3 +1,13 @@
+// Authors: Ayush Chakraborty, Samadrita Saha
+// Year of Contribution: 2022
+// Organization : Megatronix
+// Project Title: Certificate Generator
+
+
+//Constants
+var participants = ["Samrat Podder","Aman Raj","Shreya Samadrita","Ayush Chakraborty"]
+//
+
 const express = require('express')
 const app = express()
 app.use(express.json())
