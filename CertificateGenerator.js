@@ -1,0 +1,28 @@
+const Jimp = require('jimp') ;
+
+let textData = {
+    text: 'Hello World', //the text to be rendered on the image
+    maxWidth: 1920, //image width - 10px margin left - 10px margin right
+    maxHeight: 1080, //image height
+    placementX: 800, // 0,0 is top left corner, 
+    placementY: 850 //w.r.t. that text is placed on image
+  };
+//const id="fu"//fetch()
+
+const textOverlay = async (id)=> {
+   const image = await Jimp.read('public/static/images/tn1.png');
+   const font = await Jimp.loadFont(Jimp.FONT_SANS_64_WHITE);
+
+   image.print(font, textData.placementX, textData.placementY, {
+    text: id,
+    alignmentX: Jimp.HORIZONTAL_ALIGN_LEFT,
+    alignmentY: Jimp.VERTICAL_ALIGN_TOP
+  }, textData.maxWidth, textData.maxHeight);
+  
+   await image.writeAsync(`public/exports/tfu.png`);
+   console.log("Image is processed succesfully");
+}
+// textOverlay("fuck u")
+module.exports=textOverlay;
+
+
