@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generated Certificate</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: "Poppins", sans-serif;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: linear-gradient(to right, #0c356a, #0174be);
+            --secondary-color: #fff0ce;
+            --nav-text: #000000;
+            --underline-color: #ffc436;
+            --bg: #f8f6f4;
+        }
+
+        .dark-theme {
+            --secondary-color: #fff;
+            --primary-color: #080808;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--primary-color);
+            color: var(--secondary-color);
+        }
+
+        .logo img {
+            height: 75px;
+            width: 75px;
+            border-radius: 50%;
+        }
+
+        #Team {
+            padding: 30px 0;
+        }
+
+        .team-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-gap: 40px;
+            margin-top: 50px;
+        }
+
+        .team-list div {
+            background: #262626;
+            padding: 40px;
+            font-size: 13px;
+            font-weight: 300;
+            border-radius: 10px;
+            transition: background 0.5s, transform 0.5s;
+        }
+
+        .team-list div img {
+            max-width: 100%;
+            max-height: 100%;
+            display: block;
+            margin: auto;
+        }
+
+        .team-list div:hover {
+            background: #ababab;
+            transform: translateY(-10px);
+        }
+    </style>
+    <script>
+        window.onload = async function () {
+            setTimeout(async () => {
+                try {
+                    let contentElement = document.getElementsByClassName('team-list')[0];
+                    let response = await fetch('http://localhost:3000/text.ejs');
+                    let files = await response.json();
+
+                    for (let file of files) {
+                        let div = document.createElement('div');
+                        let a = document.createElement('a');
+                        a.href = `public/exports/${file}`;
+                        console.log(a.href);
+                        a.download = file;
+
+                        let img = document.createElement('img');
+                        img.src = `public/exports/${file}`;
+                        console.log(img.src);
+                        a.appendChild(img);
+                        div.appendChild(a);
+                        contentElement.appendChild(div);
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                }
+            }, 1000); // delay of 1 second
+        }
+
+
+    </script>
+</head>
+
+<body>
+    <div class="header">
+        <h1 id="head">Here are Generated Certificates</h1>
+    </div>
+
+    <div id="Team">
+        <div class="container">
+            <div class="team-list" id="cert">
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
