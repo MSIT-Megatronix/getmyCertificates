@@ -14,7 +14,7 @@ function getRandomInteger(min, max) {
 }
 const textOverlay = async (id) => {
   const image = await Jimp.read('public/static/images/tn1.png');
-  const font = await Jimp.loadFont(Jimp.FONT_SANS_64_WHITE);
+  const font = await Jimp.loadFont(Jimp.FONT_SANS_64_BLACK);
 
   image.print(font, textData.placementX, textData.placementY, {
     text: id,
